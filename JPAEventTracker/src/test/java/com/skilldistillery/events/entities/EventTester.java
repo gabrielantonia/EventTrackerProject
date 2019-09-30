@@ -2,7 +2,7 @@ package com.skilldistillery.events.entities;
 
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

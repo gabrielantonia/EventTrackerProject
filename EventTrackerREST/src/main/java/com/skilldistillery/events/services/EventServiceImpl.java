@@ -1,39 +1,60 @@
 package com.skilldistillery.events.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.events.entities.Event;
 import com.skilldistillery.events.repositories.EventRepo;
 
+@Service
 public class EventServiceImpl implements EventService {
 
 	@Autowired
 	EventRepo repo;
-
+	
+	@Override
 	public List<Event> getAll() {
 		return repo.findAll();
 	}
-
-	public Event createNewEvent(Event newEvent) {
-		repo.saveAndFlush(entity)
-		return null;
+	@Override
+	public Event createNewEvent(Event event) {
+		
+		return repo.saveAndFlush(event);
 	}
-
-	public Event updateEvent(int id, Event updateEvent) {
-		// TODO Auto-generated method stub
-		return null;
+	@Override
+	public Event updateEvent(Integer id, Event updateEvent) {
+		Event managedEvent = null;
+		Optional<Event> optEvent = repo.findById(id);
+		if(optEvent.isPresent()) {
+			managedEvent = optEvent.get();
+			managedEvent.setName(updateEvent.getName());
+			managedEvent.setAttending(updateEvent.getAttending());
+			managedEvent.setDescription(updateEvent.getDescription());
+			managedEvent.setEventDate(updateEvent.getEventDate());
+			managedEvent.setTitle(updateEvent.getTitle());
+			managedEvent.setRequired(updateEvent.getRequired());
+			managedEvent.setUpdatedOn(updateEvent.getUpdatedOn());
+			repo.save(managedEvent);
+		}
+		return managedEvent;
 	}
-
+	
+	
+	@Override
 	public boolean removeEvent(Integer id) {
-		// TODO Auto-generated method stub
+		if(repo.existsById(id)) {
+			repo.deleteById(id);
+			return true;
+		}
 		return false;
 	}
-
-	public Event findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	@Override
+	public Optional<Event> findById(Integer id) {
+		
+		return repo.findById(id);
 	}
 	
 	
