@@ -22,6 +22,14 @@ DROP TABLE IF EXISTS `event` ;
 
 CREATE TABLE IF NOT EXISTS `event` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `event_date` DATETIME NULL,
+  `created_on` DATETIME NULL,
+  `updated_on` DATETIME NULL,
+  `name` VARCHAR(45) NULL,
+  `title` VARCHAR(45) NULL,
+  `description` VARCHAR(500) NULL,
+  `attending` INT NULL,
+  `required` VARCHAR(200) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -41,7 +49,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eventtrackerdb`;
-INSERT INTO `event` (`id`) VALUES (1);
+INSERT INTO `event` (`id`, `event_date`, `created_on`, `updated_on`, `name`, `title`, `description`, `attending`, `required`) VALUES (1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 COMMIT;
 
