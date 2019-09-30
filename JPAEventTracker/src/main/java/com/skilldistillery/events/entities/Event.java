@@ -1,5 +1,6 @@
 package com.skilldistillery.events.entities;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -7,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 public class Event {
@@ -17,11 +21,13 @@ public class Event {
 	private int id;
 	
 	@Column(name="event_date")
-	private LocalDateTime eventDate;
+	private Date eventDate;
 	
+	@CreationTimestamp
 	@Column(name="created_on")
 	private LocalDateTime createdOn;
 	
+	@UpdateTimestamp
 	@Column(name="updated_on")
 	private LocalDateTime updatedOn;
 	
@@ -31,15 +37,15 @@ public class Event {
 	
 	private String description;
 	
-	private int attending;
+	private Integer attending;
 	
 	private String required;
 	
 	
 	
 	
-	public Event(int id, LocalDateTime eventDate, LocalDateTime createdOn, LocalDateTime updatedOn, String name,
-			String title, String description, int attending, String required) {
+	public Event(int id, Date eventDate, LocalDateTime createdOn, LocalDateTime updatedOn, String name,
+			String title, String description, Integer attending, String required) {
 		super();
 		this.id = id;
 		this.eventDate = eventDate;
@@ -75,7 +81,7 @@ public class Event {
 		return true;
 	}
 
-	public int getAttending() {
+	public Integer getAttending() {
 		return attending;
 	}
 
@@ -87,7 +93,7 @@ public class Event {
 		return description;
 	}
 
-	public LocalDateTime getEventDate() {
+	public Date getEventDate() {
 		return eventDate;
 	}
 
@@ -119,7 +125,7 @@ public class Event {
 		return result;
 	}
 
-	public void setAttending(int attending) {
+	public void setAttending(Integer attending) {
 		this.attending = attending;
 	}
 
@@ -131,7 +137,7 @@ public class Event {
 		this.description = description;
 	}
 
-	public void setEventDate(LocalDateTime eventDate) {
+	public void setEventDate(Date eventDate) {
 		this.eventDate = eventDate;
 	}
 
